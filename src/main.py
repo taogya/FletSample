@@ -72,7 +72,7 @@ def main(page: ft.Page):
     def get_temperature():
         try:
             temp = os.popen('vcgencmd measure_temp').readline()
-            temperature = float(temp.replace('temp=', '').replace('C\n', ''))
+            temperature = float(temp.replace('temp=', '').replace('\'C\n', ''))
             return temperature
         except BaseException:
             # エラーが発生した場合はランダムな値を返す
