@@ -13,8 +13,7 @@ $ cd FletSample
 ```sh
 $ python3.9 -m venv venv
 $ . venv/bin/activate
-$ pip install flet autopep8 isort flake8
-$ pip freeze > requirements.txt
+$ pip install -r requirements.txt
 ```
 3. 実行<br>
 GUIアプリとして起動<br>
