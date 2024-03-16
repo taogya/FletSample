@@ -1,0 +1,27 @@
+{
+    "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python3.9",
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/src"
+    ],
+    "editor.formatOnSave": true, // ファイル保存時にフォーマットをかけるか
+    // flake8
+    "flake8.args": [
+        "--ignore=E501, W503, W504",
+    ],
+    // autopep8
+    "autopep8.args": [
+        "--ignore=E501, W503, W504",
+    ],
+    "[python]": {
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        },
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
+    // isort
+    "isort.check": true,
+    "isort.args": [
+        "--settings-file",
+        "${workspaceFolder}/.isort.cfg",
+    ],
+}
