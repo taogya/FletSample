@@ -6,7 +6,7 @@ CPU温度を取得してそれをチャートに表示します。<br>
 ## Macで開発
 1. 作業ディレクトリ作成
 ```sh
-$ git clone git@github.com:taogya/FletSample.git
+$ git clone https://github.com/taogya/FletSample.git
 $ cd FletSample
 ```
 2. 開発環境構築
