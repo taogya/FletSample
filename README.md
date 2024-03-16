@@ -3,7 +3,6 @@ Fletを使用したアプリ開発(Mac/Raspberry Pi)<br>
 CPU温度を取得してそれをチャートに表示します。<br>
 クリアボタンをクリックで、チャートをクリアします。<br>
 
-## Macで開発
 1. 作業ディレクトリ作成<br>
 ```sh
 $ git clone https://github.com/taogya/FletSample.git
