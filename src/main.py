@@ -7,7 +7,7 @@ import flet as ft
 
 def main(page: ft.Page):
     # タイトルの設定
-    page.title = "Flet Sample"
+    page.title = 'Flet Sample'
     # ページの配置を中央に設定
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
@@ -62,7 +62,7 @@ def main(page: ft.Page):
         ),
         ft.Row(
             controls=[
-                ft.FilledButton(text="Clear", on_click=clear_chart, expand=True),
+                ft.FilledButton(text='Clear', on_click=clear_chart, expand=True),
             ],
             alignment=ft.MainAxisAlignment.CENTER,
         )
@@ -71,8 +71,8 @@ def main(page: ft.Page):
     # 温度を取得する
     def get_temperature():
         try:
-            temp = os.popen("vcgencmd measure_temp").readline()
-            temperature = float(temp.replace("temp=", "").replace("'C\n", ""))
+            temp = os.popen('vcgencmd measure_temp').readline()
+            temperature = float(temp.replace('temp=', '').replace('C\n', ''))
             return temperature
         except BaseException:
             # エラーが発生した場合はランダムな値を返す
@@ -91,5 +91,17 @@ def main(page: ft.Page):
     th.start()
 
 
-# アプリの起動
-ft.app(target=main)
+if __name__ == '__main__':
+    from argparse import ArgumentParser
+
+    # コマンドライン引数のパース
+    parser = ArgumentParser()
+    parser.add_argument('--host', type=str, default=None)
+    parser.add_argument('--port', type=int, default=0)
+    args = parser.parse_args()
+
+    # アプリのビューを設定(host が指定されている場合はブラウザで開く)
+    view = ft.AppView.FLET_APP if not args.host else ft.AppView.WEB_BROWSER
+
+    # アプリの起動
+    ft.app(target=main, host=args.host, port=args.port, view=view)
