@@ -14,6 +14,14 @@ $ python3.9 -m venv venv
 $ . venv/bin/activate
 $ pip install -r requirements.txt
 ```
+> [!NOTE]
+> 以下のエラーが出た時は，追加パッケージのインストールが必要。
+> flet: error while loading shared libraries: libmpv.so.1: cannot open shared object file: No such file or directory
+> ```sh
+> # Raspberry Pi4の場合です。
+> $ sudo apt-get install -y mpv libmpv-dev
+> $ sudo cp -r /usr/lib/aarch64-linux-gnu/libmpv.so.2 /usr/lib/aarch64-linux-gnu/libmpv.so.1
+> ```
 3. 実行<br>
 GUIアプリとして起動<br>
 ```sh
