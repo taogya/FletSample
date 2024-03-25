@@ -4,6 +4,8 @@ import time
 
 import flet as ft
 
+X_LEN = 30
+
 
 def main(page: ft.Page):
     # タイトルの設定
@@ -40,9 +42,11 @@ def main(page: ft.Page):
         bottom_axis=ft.ChartAxis(
             labels_size=32,
         ),
-        tooltip_bgcolor=ft.colors.with_opacity(0.8, ft.colors.BLUE_GREY),
-        min_y=0,
-        max_y=100,
+        tooltip_bgcolor=ft.colors.with_opacity(0.8, ft.colors.WHITE),
+        min_y=30,
+        max_y=80,
+        min_x=0,
+        max_x=X_LEN,
         expand=True,
     )
 
@@ -81,8 +85,14 @@ def main(page: ft.Page):
 
     # チャートを更新する
     def update_chart():
+        count = 0
         while True:
-            data_points.append(ft.LineChartDataPoint(x=len(data_points), y=get_temperature()))
+            data_points.append(ft.LineChartDataPoint(x=count, y=get_temperature()))
+            if len(data_points) > X_LEN:
+                data_points.pop(0)
+            count += 1
+            chart.min_x = max(0, count - X_LEN)
+            chart.max_x = max(count, X_LEN)
             chart.update()
             time.sleep(1)
 
