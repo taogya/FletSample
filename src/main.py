@@ -4,7 +4,7 @@ import time
 
 import flet as ft
 
-X_LEN = 30
+X_LEN = 60
 
 
 def main(page: ft.Page):
@@ -51,7 +51,9 @@ def main(page: ft.Page):
     )
 
     # チャートをクリアする
+    count = 0
     def clear_chart(e):
+        count = 0
         data_points.clear()
         chart.update()
 
@@ -85,7 +87,6 @@ def main(page: ft.Page):
 
     # チャートを更新する
     def update_chart():
-        count = 0
         while True:
             data_points.append(ft.LineChartDataPoint(x=count, y=get_temperature()))
             if len(data_points) > X_LEN:
