@@ -36,3 +36,16 @@ $ cd src
 $ python main.py --host 0.0.0.0 --port 8080
 ```
 http://localhost:8080<br>
+
+
+## 自動起動設定
+起動時に本アプリを起動したい場合は，以下の作業を行います。<br>
+1. サービスファイルの作成<br>
+    [こちら](flet_sample.service)参考にしてください。
+2. サービスの起動
+```sh
+$ sudo systemctl link "$(pwd)"/flet_sample.service
+$ sudo systemctl enable flet_sample
+$ sudo systemctl start flet_sample
+$ sudo systemctl status flet_sample
+```

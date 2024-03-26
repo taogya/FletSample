@@ -1,0 +1,15 @@
+[Unit]
+Description=Flet Sample Service
+After=network.target
+
+[Service]
+WorkingDirectory=/path/to/your/FletSample
+ExecStart=/bin/bash -c '\
+    . venv/bin/activate;\
+    python src/main.py --host 0.0.0.0 --port 8080;\
+'
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
