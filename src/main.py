@@ -6,17 +6,18 @@ import flet as ft
 
 X_LEN = 60
 count = 0
+# チャートに表示するデータ
+data_points = []
 
 
 def main(page: ft.Page):
+    global count, data_points
+    count = 0
     # タイトルの設定
     page.title = 'Flet Sample'
     # ページの配置を中央に設定
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
 
-    # チャートに表示するデータ
-    data_points = [
-    ]
     # チャートに表示するシリーズの設定
     data_series = [
         ft.LineChartData(
@@ -53,7 +54,7 @@ def main(page: ft.Page):
 
     # チャートをクリアする
     def clear_chart(e):
-        global count
+        global count, data_points
         count = 0
         data_points.clear()
         chart.update()
@@ -87,21 +88,21 @@ def main(page: ft.Page):
             return random.randint(0, 40)
 
     # チャートを更新する
-    def update_chart():
+    def update_chart(chart: ft.LineChart):
         global count
 
         while True:
+            count += 1
             data_points.append(ft.LineChartDataPoint(x=count, y=get_temperature()))
             if len(data_points) > X_LEN:
                 data_points.pop(0)
-            count += 1
             chart.min_x = max(0, count - X_LEN)
             chart.max_x = max(count, X_LEN)
             chart.update()
             time.sleep(1)
 
     # チャートを更新するスレッドを開始
-    th = threading.Thread(target=update_chart)
+    th = threading.Thread(target=update_chart, args=(chart,))
     th.start()
 
 
